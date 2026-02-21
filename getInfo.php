@@ -2,16 +2,20 @@
 
 include('config.php');
 
-$id = intval($_GET['id']);
+if (isset($_POST["add"])) {
+  $id = intval($_POST['id']);
+  $name = $_POST["name"];
+  $class = $_POST["class"];
 
-$query = $db->prepare("SELECT * FROM students WHERE Id = ?");
+  $query = $db->prepare("INSERT INTO students (Name, Class) VALUES (?,?)");
 
-$query->bindValue(1, $id);
+  $query->bindValue(1, $name);
+  $query->bindValue(2, $class);
 
-$query->execute();
-
-while ($row = $query->fetchAll(PDO::FETCH_ASSOC)) {
-  foreach ($row as $value) {
-    echo $value['Id'] . "<br>" . $value['Name'] . " <br> " . $value['Class'] . "<br>";
+  if ($query->execute()) {
+    header("Location: index.php");
+    exit();
+  } else {
+    echo "Record Not inserted!!";
   }
 }
