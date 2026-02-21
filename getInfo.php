@@ -2,9 +2,13 @@
 
 include('config.php');
 
-$id = $_GET['id'];
+$id = intval($_GET['id']);
 
-$query = $db->query("SELECT * FROM students WHERE Id = $id");
+$query = $db->prepare("SELECT * FROM students WHERE Id = ?");
+
+$query->bindValue(1, $id);
+
+$query->execute();
 
 while ($row = $query->fetchAll(PDO::FETCH_ASSOC)) {
   foreach ($row as $value) {
