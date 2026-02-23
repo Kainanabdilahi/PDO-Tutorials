@@ -1,40 +1,46 @@
+
+
+
+
 <?php
-include("config.php");
-include("header.php");
+
+include('config.php');
+include('header.php');
+
+$query = $db->query("SELECT * FROM students");
 ?>
-<body>
-  <div class="container col-5">
-    <div class="d-flex justify-content-between mt-2">
-      <h3>PDO Crud Operations</h3>
-      <a href="fetch.php" class="btn btn-primary">View List</a>
+
+<div class="container mt-4 d-flex justify-content-center">
+
+  <div class="card-body col-6">
+    <div class="d-flex justify-content-between mb-2">
+      <h3>Student List</h3>
+      <a href="fetch.php" class="btn btn-primary">Add Student</a>
     </div>
-    <form action="getInfo.php" method="post">
-      <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" name="id" class="form-control" placeholder="Enter Student ID" readonly>
-      </div>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" name="name" class="form-control" placeholder="Enter Student name" required>
-      </div>
 
-      <div class="form-group">
-        <label for="class">Class</label>
-        <input type="text" name="class" class="form-control" placeholder="Enter Student Class" required>
-      </div>
+    <table class="table table-bordered table-hover">
+      <thead class="thead-info">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php while ($row = $query->fetch(PDO::FETCH_ASSOC)) { ?>
+          <tr>
+            <td><?php echo $row["Id"]; ?></td>
+            <td><?php echo $row["Name"]; ?></td>
+            <td><?php echo $row["Class"]; ?></td>
+            <td>
+              <a class="btn btn-info">Edit</a>
+              <a class="btn btn-danger">Delete</a>
+            </td>
 
-      <button type="submit" name="add" class="btn btn-success btn-block">
-        Insert Record
-      </button>
-    </form>
+          </tr>
+        <?php } ?>
+      </tbody>
+    </table>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
+</div>
