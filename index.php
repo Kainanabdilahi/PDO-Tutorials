@@ -1,4 +1,3 @@
-
 <?php
 
 include('config.php');
@@ -31,8 +30,8 @@ $query = $db->query("SELECT * FROM students");
             <td><?php echo $row["Name"]; ?></td>
             <td><?php echo $row["Class"]; ?></td>
             <td>
-              <a class="btn btn-info">Edit</a>
-              <a class="btn btn-danger">Delete</a>
+              <a href="update.php?id=<?php echo $row["Id"]; ?>" class="btn btn-info">Edit</a>
+              <a href="getInfo.php?id=<?php echo $row["Id"]; ?>" class="btn btn-danger">Delete</a>
             </td>
 
           </tr>
