@@ -3,11 +3,9 @@ include("config.php");
 include("header.php");
 ?>
 
-<body>
-  <div class="container col-4">
-
-    <h3>PDO Crud Operations</h3>
-
+<body class="">
+  <div class="container col-4 shadow p-4 mt-3">
+    <h3>Add Student</h3>
     <form action="getInfo.php" method="post">
       <div class="form-group">
         <label for="id">ID</label>
@@ -24,7 +22,7 @@ include("header.php");
       </div>
 
       <button type="submit" name="add" class="btn btn-success btn-block">
-        Insert Record
+        Save
       </button>
     </form>
   </div>
