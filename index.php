@@ -31,7 +31,13 @@ $query = $db->query("SELECT * FROM students");
             <td><?php echo $row["Class"]; ?></td>
             <td>
               <a href="update.php?id=<?php echo $row["Id"]; ?>" class="btn btn-info">Edit</a>
-              <a href="getInfo.php?id=<?php echo $row["Id"]; ?>" class="btn btn-danger">Delete</a>
+              <!-- <a href="getInfo.php?id=<?php echo $row["Id"]; ?>" class="btn btn-danger">Delete</a> -->
+              <form action="getInfo.php" method="POST" style="display:inline;">
+                <input type="hidden" name="id" value="<?php echo $row['Id']; ?>">
+                <button type="submit" name="delete" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </form>
             </td>
 
           </tr>

@@ -39,8 +39,8 @@ if (isset($_POST["update"])) {
   }
 }
 // Delete Student Record
-if (isset($_GET["id"])) {
-  $id = intval($_GET['id']);
+if (isset($_POST["id"])) {
+  $id = intval($_POST['id']);
 
   $query = $db->prepare("DELETE FROM students WHERE Id=?");
   $query->bindParam(1, var: $id);
